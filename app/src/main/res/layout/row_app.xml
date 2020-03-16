@@ -7,10 +7,10 @@
     android:layout_marginBottom="@dimen/_20sdp"
     android:gravity="center">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_icon"
         android:layout_width="@dimen/_38sdp"
-        android:layout_height="@dimen/_38sdp"/>
+        android:layout_height="@dimen/_38sdp" />
     <TextView
         android:textSize="@dimen/_9ssp"
         android:paddingTop="@dimen/_10sdp"

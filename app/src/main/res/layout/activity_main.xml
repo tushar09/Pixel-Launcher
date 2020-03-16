@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
     tools:context=".MainActivity">
 
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        xmlns:sothree="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/sliding_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        sothree:umanoDragView="@id/rv_app_list"
-        sothree:umanoFadeColor="@android:color/transparent"
-        sothree:umanoPanelHeight="68dp"
-        sothree:umanoShadowHeight="4dp">
+    <!-- include app bar -->
+<!--    <include layout="@layout/app_bar" />-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Main Content"
-            android:textSize="16sp" />
+    <!-- include main content -->
+    <include layout="@layout/activity_bottom_sheet_content" android:id="@+id/mainHolder"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_app_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <!-- include bottom sheet -->
+    <include layout="@layout/bottom_sheet" android:id="@+id/container" />
 
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

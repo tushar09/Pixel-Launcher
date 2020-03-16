@@ -1,7 +1,9 @@
 package bd.com.classroom.lan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -32,10 +34,20 @@ public class AppListAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position){
         Holder h = (Holder) holder;
         h.binding.ivIcon.setImageDrawable(applIst.get(position).getIcon());
         h.binding.tvName.setText(applIst.get(position).getName());
+
+        h.binding.getRoot().setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = context.getPackageManager().getLaunchIntentForPackage(applIst.get(position).getPackageName());
+                if(i != null){
+                    context.startActivity(i);
+                }
+            }
+        });
     }
 
     @Override
