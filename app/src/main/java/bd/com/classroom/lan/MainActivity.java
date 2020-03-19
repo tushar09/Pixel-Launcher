@@ -2,6 +2,9 @@ package bd.com.classroom.lan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -101,19 +104,6 @@ public class MainActivity extends AppCompatActivity{
         binding.container.iv4.setImageDrawable(appList.get(3).getIcon());
         binding.container.iv5.setImageDrawable(appList.get(4).getIcon());
 
-//        PackageManager pm = getPackageManager();
-//        Intent launchIntentForPackage = pm.getLaunchIntentForPackage("sadfg");
-//        String fullPathToActivity = launchIntentForPackage.getComponent().getClassName();
-//        ActivityInfo activityInfo = null;
-//        try{
-//            activityInfo = pm.getActivityInfo(new ComponentName("sadfg", fullPathToActivity), 0);
-//        }catch(PackageManager.NameNotFoundException e){
-//            e.printStackTrace();
-//        }
-//        int iconRes = activityInfo.icon;
-//        Drawable drawable = pm.getDrawable("asdf", iconRes, activityInfo.applicationInfo); // will be AdaptiveIconDrawable, if the app has it
-//        AdaptiveIconDrawable d = (AdaptiveIconDrawable) drawable;
-//        //d.get
     }
 
     private List<AppModel> getAppList(){
@@ -165,7 +155,6 @@ public class MainActivity extends AppCompatActivity{
         return appList;
     }
 
-
     public static Bitmap drawableToBitmap (Drawable drawable) {
         Bitmap bitmap = null;
 
@@ -210,6 +199,24 @@ public class MainActivity extends AppCompatActivity{
         public void onReceive(Context context, Intent intent) {
             String temp = intent.getStringExtra("notification_event");
 
+        }
+    }
+
+    class Pager extends FragmentPagerAdapter{
+
+        public Pager(@NonNull FragmentManager fm, int behavior){
+            super(fm, behavior);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position){
+            return null;
+        }
+
+        @Override
+        public int getCount(){
+            return 0;
         }
     }
 }
