@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -44,6 +47,10 @@ public class MainActivity extends AppCompatActivity{
 
     private GridLayoutManager gridLayoutManager;
 
+    private NotificationReceiver nReceiver;
+
+    private BottomSheetBehavior bottomSheetBehavior;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -56,25 +63,14 @@ public class MainActivity extends AppCompatActivity{
 
         appList = getAppList();
 
-        for(int t = 0; t < appList.size(); t++){
-            //Log.e("app name", appList.get(t).getName());
-            //Bitmap b = appList.get(t).getBitmap();
-            if(appList.get(t).getAd() == null){
-                Log.e(appList.get(t).getName(), "null");
-            }
-//            if(b.getPixel(0, 0) == Color.TRANSPARENT){
-//                //Log.e("app name", appList.get(t).getName() + " has");
-//            }else {
-//                //Log.e("app name", appList.get(t).getName() + " not has");
-//            }
-//            for(int x = 0; x<b.getWidth(); x++){
-//                for(int y = 0; y<b.getHeight(); y++){
-//                    if(b.getPixel(x, y) == Color.TRANSPARENT){
-//
-//                    }
-//                }
-//            }
-        }
+//        Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+//        startActivity(intent);
+
+        nReceiver = new NotificationReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.kpbird.nlsexample.NOTIFICATION_LISTENER_EXAMPLE");
+        registerReceiver(nReceiver,filter);
+
 
 
         gridLayoutManager = new GridLayoutManager(this, 5);
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
         binding.container.rvAppList.setLayoutManager(gridLayoutManager);
         binding.container.rvAppList.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
 
-        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(binding.container.getRoot());
+        bottomSheetBehavior = BottomSheetBehavior.from(binding.container.getRoot());
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback(){
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState){
@@ -93,7 +89,6 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset){
-                Log.e("slider", slideOffset + "");
                 binding.container.pick.setAlpha(1 - slideOffset);
                 binding.container.search.setAlpha(slideOffset);
                 binding.mainHolder.getRoot().setAlpha(slideOffset);
@@ -192,5 +187,29 @@ public class MainActivity extends AppCompatActivity{
         drawable.draw(canvas);
         return bitmap;
         //return Bitmap.createBitmap(bitmap, 40, 40, bitmap.getWidth() - 80, bitmap.getHeight() - 80);
+    }
+
+    @Override
+    protected void onStop(){
+        unregisterReceiver(nReceiver);
+        super.onStop();
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }else {
+            super.onBackPressed();
+        }
+
+    }
+
+    class NotificationReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String temp = intent.getStringExtra("notification_event");
+
+        }
     }
 }

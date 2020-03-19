@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.shape.CornerFamily;
+
 import java.util.List;
 
 import bd.com.classroom.lan.databinding.RowAppAdaptiveBinding;
@@ -52,6 +54,7 @@ public class AppListAdapter extends RecyclerView.Adapter{
                     if(i != null){
                         context.startActivity(i);
                     }
+
                 }
             });
         }else {
@@ -59,6 +62,25 @@ public class AppListAdapter extends RecyclerView.Adapter{
             h.binding.ivBack.setImageBitmap(applIst.get(position).getBackG());
             h.binding.ivFor.setImageBitmap(applIst.get(position).getForG());
             h.binding.tvName.setText(applIst.get(position).getName());
+
+//            h.binding.si.setShapeAppearanceModel(h.binding.si.getShapeAppearanceModel()
+//                    .toBuilder()
+//                    .setTopLeftCorner(CornerFamily.ROUNDED, 65)
+//                    .setTopRightCorner(CornerFamily.ROUNDED, 65)
+//                    .setBottomLeftCorner(CornerFamily.ROUNDED, 65)
+//                    .setBottomRightCorner(CornerFamily.ROUNDED, 20)
+//                    .build()
+//            );
+//            h.binding.si2.setShapeAppearanceModel(h.binding.si2.getShapeAppearanceModel()
+//                    .toBuilder()
+//                    .setTopLeftCorner(CornerFamily.ROUNDED, 65)
+//                    .setTopRightCorner(CornerFamily.ROUNDED, 65)
+//                    .setBottomLeftCorner(CornerFamily.ROUNDED, 65)
+//                    .setBottomRightCorner(CornerFamily.ROUNDED, 20)
+//                    .build()
+//            );
+//            h.binding.si.setImageBitmap(applIst.get(position).getBackG());
+//            h.binding.si2.setImageBitmap(applIst.get(position).getForG());
 
             h.binding.getRoot().setOnClickListener(new View.OnClickListener(){
                 @Override

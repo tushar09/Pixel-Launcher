@@ -7,9 +7,11 @@
     android:layout_marginBottom="@dimen/_20sdp"
     android:gravity="center">
 
+
+
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="@dimen/_5sdp"
         app:cardPreventCornerOverlap="true"
+        app:cardCornerRadius="@dimen/_5sdp"
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp">
         <ImageView
