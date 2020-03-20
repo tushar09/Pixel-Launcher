@@ -98,11 +98,28 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 //
-        binding.container.iv1.setImageDrawable(appList.get(0).getIcon());
-        binding.container.iv2.setImageDrawable(appList.get(1).getIcon());
-        binding.container.iv3.setImageDrawable(appList.get(2).getIcon());
-        binding.container.iv4.setImageDrawable(appList.get(3).getIcon());
-        binding.container.iv5.setImageDrawable(appList.get(4).getIcon());
+        for(int t = 0; t < appList.size(); t++){
+            if(appList.get(t).getName().toLowerCase().equals("chrome")){
+                binding.container.iv3.setImageDrawable(appList.get(t).getIcon());
+            }
+            if(appList.get(t).getName().toLowerCase().equals("camera")){
+                binding.container.iv5.setImageDrawable(appList.get(t).getIcon());
+            }
+            if(appList.get(t).getName().toLowerCase().equals("my contacts")){
+                binding.container.iv4.setImageDrawable(appList.get(t).getIcon());
+            }
+            if(appList.get(t).getName().toLowerCase().equals("google")){
+                binding.container.iv1.setImageDrawable(appList.get(t).getIcon());
+            }
+            if(appList.get(t).getName().toLowerCase().equals("play store")){
+                binding.container.iv2.setImageDrawable(appList.get(t).getIcon());
+            }
+        }
+//        binding.container.iv1.setImageDrawable(appList.get(0).getIcon());
+//        binding.container.iv2.setImageDrawable(appList.get(1).getIcon());
+//        binding.container.iv3.setImageDrawable(appList.get(2).getIcon());
+//        binding.container.iv4.setImageDrawable(appList.get(3).getIcon());
+//        binding.container.iv5.setImageDrawable(appList.get(4).getIcon());
 
     }
 
