@@ -1,4 +1,4 @@
-package bd.com.classroom.lan.models;
+package com.captaindroid.lan.models;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.AdaptiveIconDrawable;

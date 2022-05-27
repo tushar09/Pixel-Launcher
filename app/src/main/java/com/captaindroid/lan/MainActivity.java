@@ -1,4 +1,4 @@
-package bd.com.classroom.lan;
+package com.captaindroid.lan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.captaindroid.lan.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -37,10 +38,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import bd.com.classroom.lan.adapter.AppListAdapter;
-import bd.com.classroom.lan.databinding.ActivityMainBinding;
-import bd.com.classroom.lan.models.AppModel;
-import bd.com.classroom.lan.views.SpacesItemDecoration;
+import com.captaindroid.lan.adapter.AppListAdapter;
+import com.captaindroid.lan.databinding.ActivityMainBinding;
+import com.captaindroid.lan.models.AppModel;
+import com.captaindroid.lan.views.SpacesItemDecoration;
 
 public class MainActivity extends AppCompatActivity{
 

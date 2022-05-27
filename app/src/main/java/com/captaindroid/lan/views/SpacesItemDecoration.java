@@ -1,4 +1,4 @@
-package bd.com.classroom.lan.views;
+package com.captaindroid.lan.views;
 
 import android.graphics.Rect;
 import android.view.View;

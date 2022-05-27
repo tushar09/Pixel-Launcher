@@ -1,4 +1,4 @@
-package bd.com.classroom.lan;
+package com.captaindroid.lan;
 
 import org.junit.Test;
 

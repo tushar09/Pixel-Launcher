@@ -1,4 +1,4 @@
-package bd.com.classroom.lan.adapter;
+package com.captaindroid.lan.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import com.google.android.material.shape.CornerFamily;
 
 import java.util.List;
 
-import bd.com.classroom.lan.databinding.RowAppAdaptiveBinding;
-import bd.com.classroom.lan.databinding.RowAppBinding;
-import bd.com.classroom.lan.models.AppModel;
+import com.captaindroid.lan.databinding.RowAppAdaptiveBinding;
+import com.captaindroid.lan.databinding.RowAppBinding;
+import com.captaindroid.lan.models.AppModel;
 
 public class AppListAdapter extends RecyclerView.Adapter{
 

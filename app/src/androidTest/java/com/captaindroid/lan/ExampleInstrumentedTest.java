@@ -1,4 +1,4 @@
-package bd.com.classroom.lan;
+package com.captaindroid.lan;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest{
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("bd.com.classroom.lan", appContext.getPackageName());
+        assertEquals("bd.com.captaindroid.lan", appContext.getPackageName());
     }
 }

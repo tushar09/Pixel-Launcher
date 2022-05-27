@@ -1,4 +1,4 @@
-package bd.com.classroom.lan.services;
+package com.captaindroid.lan.services;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
