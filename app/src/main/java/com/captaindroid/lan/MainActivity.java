@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.captaindroid.lan.R;
+import com.captaindroid.lan.databinding.BottomSheetBinding;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -60,8 +62,13 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
         getSupportActionBar().hide();
 
@@ -79,41 +86,53 @@ public class MainActivity extends AppCompatActivity{
 
         gridLayoutManager = new GridLayoutManager(this, 5);
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
-        binding.container.rvAppList.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+        int firstRowTopMargin = getResources().getDimensionPixelSize(R.dimen.margin_top_30);
+        binding.container.rvAppList.addItemDecoration(new SpacesItemDecoration(spacingInPixels, firstRowTopMargin));
         binding.container.rvAppList.setAdapter(new AppListAdapter(this, appList));
         binding.container.rvAppList.setLayoutManager(gridLayoutManager);
         binding.container.rvAppList.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
+
+        binding.container.getRoot().setAlpha(0);
 
         bottomSheetBehavior = BottomSheetBehavior.from(binding.container.getRoot());
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback(){
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState){
-
+                View decor = getWindow().getDecorView();
+                if(newState == BottomSheetBehavior.STATE_EXPANDED){
+                    decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                }else{
+                    decor.setSystemUiVisibility(0 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                }
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset){
-                binding.container.pick.setAlpha(1 - slideOffset);
+                //binding.container.pick.setAlpha(1 - slideOffset);
                 binding.container.search.setAlpha(slideOffset);
-                binding.mainHolder.getRoot().setAlpha(slideOffset);
+                binding.mainHolder.getRoot().setAlpha(1 - slideOffset);
+                //binding.mainHolder.dockPick.setAlpha(1 - slideOffset);
+                binding.container.getRoot().setAlpha(slideOffset);
             }
         });
 //
         for(int t = 0; t < appList.size(); t++){
             if(appList.get(t).getName().toLowerCase().equals("chrome")){
-                binding.container.iv3.setImageDrawable(appList.get(t).getIcon());
+                binding.mainHolder.iv3.setImageDrawable(appList.get(t).getIcon());
             }
             if(appList.get(t).getName().toLowerCase().equals("camera")){
-                binding.container.iv5.setImageDrawable(appList.get(t).getIcon());
+                binding.mainHolder.iv5.setImageDrawable(appList.get(t).getIcon());
             }
             if(appList.get(t).getName().toLowerCase().equals("my contacts")){
-                binding.container.iv4.setImageDrawable(appList.get(t).getIcon());
+                binding.mainHolder.iv4.setImageDrawable(appList.get(t).getIcon());
             }
             if(appList.get(t).getName().toLowerCase().equals("google")){
-                binding.container.iv1.setImageDrawable(appList.get(t).getIcon());
+                binding.mainHolder.iv1.setImageDrawable(appList.get(t).getIcon());
             }
             if(appList.get(t).getName().toLowerCase().equals("play store")){
-                binding.container.iv2.setImageDrawable(appList.get(t).getIcon());
+                binding.mainHolder.iv2.setImageDrawable(appList.get(t).getIcon());
             }
         }
 //        binding.container.iv1.setImageDrawable(appList.get(0).getIcon());

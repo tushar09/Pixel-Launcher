@@ -4,21 +4,25 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginBottom="@dimen/_20sdp"
+    android:layout_marginBottom="@dimen/icons_row_gap"
     android:gravity="center">
 
 
 
     <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/icon_margin"
+        app:cardElevation="@dimen/icon_elevation"
         app:cardPreventCornerOverlap="true"
-        app:cardCornerRadius="@dimen/_5sdp"
-        android:layout_width="@dimen/_38sdp"
-        android:layout_height="@dimen/_38sdp">
+        app:cardCornerRadius="50dip"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size">
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/iv_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/iv_for"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -26,7 +30,7 @@
 
     <TextView
         android:textSize="@dimen/_9ssp"
-        android:paddingTop="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
         android:textColor="@android:color/black"
         android:singleLine="true"
         android:id="@+id/tv_name"

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="spacing">@dimen/_9sdp</dimen>
+    <dimen name="icon_size">@dimen/_45sdp</dimen>
+    <dimen name="icon_margin">@dimen/_7sdp</dimen>
+    <dimen name="icons_row_gap">@dimen/_12sdp</dimen>
+    <dimen name="icon_elevation">@dimen/_5sdp</dimen>
+    <dimen name="margin_top_30">@dimen/_30sdp</dimen>
 </resources>

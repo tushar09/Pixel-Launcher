@@ -2,6 +2,7 @@ package com.captaindroid.lan.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,7 @@ public class AppListAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         if(viewType == 0){
-            LayoutInflater li = LayoutInflater.from(context);
-            RowAppBinding binding = RowAppBinding.inflate(li, parent, false);
+            RowAppBinding binding = RowAppBinding.inflate(LayoutInflater.from(context), parent, false);
             return new Holder(binding);
         }else {
             RowAppAdaptiveBinding binding = RowAppAdaptiveBinding.inflate(LayoutInflater.from(context), parent, false);
@@ -43,6 +43,7 @@ public class AppListAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position){
         if(holder.getItemViewType() == 0){
+            Log.e("type", holder.getItemViewType() + "");
             Holder h = (Holder) holder;
             h.binding.ivIcon.setImageDrawable(applIst.get(position).getIcon());
             h.binding.tvName.setText(applIst.get(position).getName());
@@ -58,6 +59,7 @@ public class AppListAdapter extends RecyclerView.Adapter{
                 }
             });
         }else {
+            Log.e("type", holder.getItemViewType() + "");
             HolderCircle h = (HolderCircle) holder;
             h.binding.ivBack.setImageBitmap(applIst.get(position).getBackG());
             h.binding.ivFor.setImageBitmap(applIst.get(position).getForG());
