@@ -10,6 +10,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvIcon"
         android:layout_margin="@dimen/icon_margin"
         app:cardElevation="@dimen/icon_elevation"
         app:cardPreventCornerOverlap="true"

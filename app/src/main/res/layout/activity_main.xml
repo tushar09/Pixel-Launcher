@@ -11,10 +11,16 @@
 <!--    <include layout="@layout/app_bar" />-->
 
     <!-- include main content -->
-    <include layout="@layout/activity_bottom_sheet_content" android:id="@+id/mainHolder"/>
+    <include layout="@layout/activity_bottom_sheet_content"
+        android:id="@+id/mainHolder"/>
 
     <!-- include bottom sheet -->
     <include layout="@layout/bottom_sheet"
         android:id="@+id/container" />
+
+    <ImageView
+        android:id="@+id/ivFloat"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
