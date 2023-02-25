@@ -5,42 +5,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.captaindroid.lan.R;
 import com.captaindroid.lan.adapter.PagerAdapter;
-import com.captaindroid.lan.databinding.BottomSheetBinding;
-import com.captaindroid.lan.views.Grid;
+import com.captaindroid.lan.utils.GridLayoutManager;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<AppModel> appList;
 
-    private Grid gridLayoutManager;
+    private GridLayoutManager gridLayoutManager;
 
     private NotificationReceiver nReceiver;
 
@@ -144,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(nReceiver, filter);
 
 
-        gridLayoutManager = new Grid(this, 5);
+        gridLayoutManager = new GridLayoutManager(this, 5);
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
         int firstRowTopMargin = getResources().getDimensionPixelSize(R.dimen.margin_top_30);
         binding.container.rvAppList.addItemDecoration(new SpacesItemDecoration(spacingInPixels, firstRowTopMargin));

@@ -1,13 +1,11 @@
-package com.captaindroid.lan.views;
+package com.captaindroid.lan.utils;
 
 import android.content.Context;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.captaindroid.lan.MainActivity;
 
-public class Grid extends GridLayoutManager {
-    public Grid(Context context, int spanCount) {
+public class GridLayoutManager extends androidx.recyclerview.widget.GridLayoutManager {
+    public GridLayoutManager(Context context, int spanCount) {
         super(context, spanCount);
     }
 
