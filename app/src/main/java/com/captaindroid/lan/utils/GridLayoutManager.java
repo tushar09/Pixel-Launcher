@@ -11,6 +11,6 @@ public class GridLayoutManager extends androidx.recyclerview.widget.GridLayoutMa
 
     @Override
     public boolean canScrollVertically() {
-        return MainActivity.ma.canScroll && super.canScrollVertically();
+        return MainActivity.ma.appDrawerCanScroll && super.canScrollVertically();
     }
 }

@@ -19,6 +19,7 @@ import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int posX;
     public int posY;
-    public boolean canScroll = true;
+    public boolean appDrawerCanScroll = true;
     public ImageView v;
 
     public ActivityMainBinding binding;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private NotificationReceiver nReceiver;
 
     public BottomSheetBehavior bottomSheetBehavior;
+    public Vibrator vibe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        v = binding.ivFloat;
         setContentView(binding.getRoot());
-
         getSupportActionBar().hide();
+        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v = binding.ivFloat;
 
         appList = getAppList();
 
@@ -97,16 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 if (position <= 1 && position >= -1) {
                     v.setTranslationX(position * page.getWidth() / 100f);
                     i.setTranslationX(position * page.getWidth());
-                    //planet.translationX = position * (width / 2f)
-                    //name.translationX = - position * (width / 4f)
-                /* If user drags the page right to left :
-                   Planet : 0.5 of normal speed
-                   Name : 1.25 of normal speed
-
-                   If the user drags the page left to right :
-                   Planet: 1.5 of normal speed
-                   Name: 0.75 of normal speed
-                 */
                 }
             }
         });

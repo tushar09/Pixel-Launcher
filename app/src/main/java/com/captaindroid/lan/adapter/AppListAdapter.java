@@ -2,13 +2,13 @@ package com.captaindroid.lan.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.captaindroid.lan.MainActivity;
 import com.captaindroid.lan.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.shape.CornerFamily;
 
 import java.util.List;
 
@@ -34,6 +33,7 @@ public class AppListAdapter extends RecyclerView.Adapter{
     private int xPos;
     private int yPos;
     private PopupMenu popup;
+    private boolean popupDismissed = false;
 
     public AppListAdapter(Context context, List<AppModel> applIst){
         this.context = context;
@@ -83,22 +83,22 @@ public class AppListAdapter extends RecyclerView.Adapter{
             h.binding.cvIcon.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    MainActivity.ma.vibe.vibrate(20);
                     xPos = MainActivity.ma.posX;
                     yPos = MainActivity.ma.posY;
-                    MainActivity.ma.canScroll = false;
+                    MainActivity.ma.appDrawerCanScroll = false;
 
                     popup = new PopupMenu(context, v);
                     popup.getMenuInflater().inflate(R.menu.pop_up, popup.getMenu());
 
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
-                            //Toast.makeText(MainActivity.this, "Some Text" + item.getTitle(), Toast.LENGTH_SHORT).show();
+
                             return true;
                         }
                     });
-                    popup.show();//showing popup menu
-
-                    Toast.makeText(context, "good to go", Toast.LENGTH_SHORT).show();
+                    popup.show();
+                    popupDismissed = false;
                     return false;
                 }
             });
@@ -109,17 +109,24 @@ public class AppListAdapter extends RecyclerView.Adapter{
                     if(event.getAction() == MotionEvent.ACTION_UP){
                         xPos = 0;
                         yPos = 0;
-                        MainActivity.ma.canScroll = true;
+                        MainActivity.ma.appDrawerCanScroll = true;
+                        MainActivity.ma.bottomSheetBehavior.setDraggable(true);
+                        MainActivity.ma.binding.ivFloat.setVisibility(View.GONE);
                     }else {
                         if(xPos != 0){
                             int difx = Math.abs(Math.abs(Math.abs(xPos) - Math.abs(MainActivity.ma.posX)));
                             int difY = Math.abs(Math.abs(Math.abs(yPos) - Math.abs(MainActivity.ma.posY)));
                             if(difx > 30 || difY > 30){
-                                popup.dismiss();
-                                MainActivity.ma.binding.ivFloat.setImageBitmap(applIst.get(position).getBackG());
-                                MainActivity.ma.bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                                MainActivity.ma.bottomSheetBehavior.setDraggable(false);
-                                Log.e("diff", difx + "pop" + difY);
+                                if(popupDismissed == false){
+                                    popupDismissed = true;
+                                    popup.dismiss();
+                                    MainActivity.ma.binding.ivFloat.setVisibility(View.VISIBLE);
+                                    MainActivity.ma.binding.ivFloat.setImageBitmap(applIst.get(position).getBackG());
+                                    MainActivity.ma.bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                                    MainActivity.ma.bottomSheetBehavior.setDraggable(false);
+                                    Log.e("diff", difx + "pop" + difY);
+                                }
+
                             }
                         }
 
