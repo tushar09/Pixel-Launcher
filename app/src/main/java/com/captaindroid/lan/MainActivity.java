@@ -77,22 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         appList = getAppList();
 
-        binding.getRoot().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.e("root", event.getX() + " " + event.getY());
-                return false;
-            }
-        });
-
-        binding.mainHolder.pager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.e("main", event.getX() + " " + event.getY());
-                return false;
-            }
-        });
-
 //        Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
 //        startActivity(intent);
 
