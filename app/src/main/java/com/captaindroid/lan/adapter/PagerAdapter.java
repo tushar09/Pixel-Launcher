@@ -9,8 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.captaindroid.lan.MainActivity;
 import com.captaindroid.lan.databinding.DesktopBinding;
+import com.captaindroid.lan.models.DesktopAppModel;
+import com.captaindroid.lan.utils.GridLayoutManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.ViewHolder>{
@@ -31,7 +35,17 @@ public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.binding.iv.setBackgroundColor(colorList.get(position));
+        holder.binding.rvApp.setLayoutManager(new GridLayoutManager(context, 5));
+        ArrayList<DesktopAppModel> dp = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            dp.add(new DesktopAppModel(false));
+        }
+        holder.binding.rvApp.setAdapter(new DesktopAppListAdapter(context, dp));
+        holder.binding.rvApp.setTag(dp);
+        if(MainActivity.ma.desktopRecyclerView == null){
+            MainActivity.ma.desktopRecyclerView = holder.binding.rvApp;
+        }
+
     }
 
     @Override

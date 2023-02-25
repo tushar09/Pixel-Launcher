@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/icons_row_gap"
+    android:gravity="center">
+
+    <com.google.android.material.card.MaterialCardView
+        app:strokeColor="@color/colorAccent"
+        app:strokeWidth="@dimen/_3sdp"
+        android:id="@+id/cv"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"/>
+</LinearLayout>

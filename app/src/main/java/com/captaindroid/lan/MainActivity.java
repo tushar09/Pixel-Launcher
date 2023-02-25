@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.BroadcastReceiver;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.captaindroid.lan.adapter.PagerAdapter;
+import com.captaindroid.lan.interfaces.ItemFinder;
 import com.captaindroid.lan.utils.GridLayoutManager;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -41,6 +43,7 @@ import com.captaindroid.lan.adapter.AppListAdapter;
 import com.captaindroid.lan.databinding.ActivityMainBinding;
 import com.captaindroid.lan.models.AppModel;
 import com.captaindroid.lan.views.SpacesItemDecoration;
+import com.google.android.material.card.MaterialCardView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     public BottomSheetBehavior bottomSheetBehavior;
     public Vibrator vibe;
+    public RecyclerView desktopRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +98,15 @@ public class MainActivity extends AppCompatActivity {
         binding.mainHolder.pager.setPageTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
-                TextView v = page.findViewById(R.id.tv_planet_name);
-                ImageView i = page.findViewById(R.id.iv_planet_pic);
-                if (position <= 1 && position >= -1) {
-                    v.setTranslationX(position * page.getWidth() / 100f);
-                    i.setTranslationX(position * page.getWidth());
-                }
+//                TextView v = page.findViewById(R.id.tv_planet_name);
+//                ImageView i = page.findViewById(R.id.iv_planet_pic);
+//                if (position <= 1 && position >= -1) {
+//                    v.setTranslationX(position * page.getWidth() / 100f);
+//                    i.setTranslationX(position * page.getWidth());
+//                }
             }
         });
+        binding.mainHolder.pager.setUserInputEnabled(false);
 
         nReceiver = new NotificationReceiver();
         IntentFilter filter = new IntentFilter();
@@ -296,9 +301,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        //Log.e("Touch", "Touch dsi");
-        posX = (int) event.getX();
-        posY = (int) event.getY();
+        Log.e("Action", event.getAction() + " asdf");
+        if(event.getAction() == MotionEvent.ACTION_MOVE){
+            posX = (int) event.getX();
+            posY = (int) event.getY();
+
+            if(desktopRecyclerView != null){
+                if(desktopRecyclerView.findChildViewUnder(posX, posY) != null){
+                    View v = desktopRecyclerView.findChildViewUnder(posX, posY);
+                    ((ItemFinder)desktopRecyclerView.getAdapter()).findItem((Integer) ((MaterialCardView)v.findViewById(R.id.cv)).getTag());
+                    Log.e("Touch", "not null");
+                }else{
+                    Log.e("Touch", "null");
+                    ((ItemFinder)desktopRecyclerView.getAdapter()).findItem(-1);
+                }
+            }
+        }else if(event.getAction() == MotionEvent.ACTION_UP){
+            if(desktopRecyclerView != null){
+                ((ItemFinder)desktopRecyclerView.getAdapter()).findItem(-1);
+            }
+        }
+
         if(v != null){
             v.setX(event.getX());
             v.setY(event.getY());
