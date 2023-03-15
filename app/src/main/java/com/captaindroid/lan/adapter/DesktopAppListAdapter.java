@@ -54,9 +54,9 @@ public class DesktopAppListAdapter extends RecyclerView.Adapter implements ItemF
         Holder h = (Holder) holder;
         h.binding.cv.setTag(position);
         if(applIst.get(position).isHightlight()){
-            h.binding.cv.setStrokeColor(Color.BLACK);
-        }else{
             h.binding.cv.setStrokeColor(context.getResources().getColor(R.color.colorAccent));
+        }else{
+            h.binding.cv.setStrokeColor(context.getResources().getColor(R.color.transparent));
         }
     }
 

@@ -8,10 +8,13 @@
     android:gravity="center">
 
     <com.google.android.material.card.MaterialCardView
-        app:strokeColor="@color/colorAccent"
         app:strokeWidth="@dimen/_3sdp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
         android:id="@+id/cv"
+        app:cardBackgroundColor="@color/transparent"
         android:theme="@style/Theme.MaterialComponents.Light"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"/>
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"/>
 </LinearLayout>

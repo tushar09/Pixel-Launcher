@@ -7,6 +7,9 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
         android:id="@+id/rvApp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
