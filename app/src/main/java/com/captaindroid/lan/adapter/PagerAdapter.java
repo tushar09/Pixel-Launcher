@@ -2,9 +2,12 @@ package com.captaindroid.lan.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +39,20 @@ public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.rvApp.setLayoutManager(new GridLayoutManager(context, 5));
+        ViewTreeObserver vto = holder.binding.getRoot().getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                    holder.binding.getRoot().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                } else {
+                    holder.binding.getRoot().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+                Log.e("height", holder.binding.cvRvAppsHolder.getHeight() + " asdf");
+
+            }
+        });
+
         ArrayList<DesktopAppModel> dp = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             dp.add(new DesktopAppModel(false));

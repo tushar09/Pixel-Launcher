@@ -6,12 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.google.android.material.card.MaterialCardView
+        app:strokeColor="#BDD4F6"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:strokeWidth="@dimen/_2sdp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/transparent"
+        android:id="@+id/cvRvAppsHolder"
         android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginLeft="@dimen/_15sdp"
         android:layout_marginRight="@dimen/_15sdp"
-        android:id="@+id/rvApp"
+        android:layout_marginBottom="@dimen/_100sdp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <ImageView
+            android:background="#80BDD4F6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvApp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

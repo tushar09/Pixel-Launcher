@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().hide();
+
         vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         v = binding.ivFloat;
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
             }
         });
-        binding.mainHolder.pager.setUserInputEnabled(false);
+        //binding.mainHolder.pager.setUserInputEnabled(false);
 
         nReceiver = new NotificationReceiver();
         IntentFilter filter = new IntentFilter();
@@ -302,7 +302,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        Log.e("Action", event.getAction() + " asdf");
         if(event.getAction() == MotionEvent.ACTION_MOVE){
             posX = (int) event.getX();
             posY = (int) event.getY();
@@ -326,7 +325,6 @@ public class MainActivity extends AppCompatActivity {
         if(v != null){
             v.setX(event.getX());
             v.setY(event.getY());
-            Log.e("gettin", "there");
         }
         return super.dispatchTouchEvent(event);
     }
