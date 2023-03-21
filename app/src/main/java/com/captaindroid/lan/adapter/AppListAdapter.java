@@ -120,8 +120,9 @@ public class AppListAdapter extends RecyclerView.Adapter{
                                 if(popupDismissed == false){
                                     popupDismissed = true;
                                     popup.dismiss();
+                                    MainActivity.ma.binding.ivIconFront.setImageBitmap(applIst.get(position).getBackG());
+                                    MainActivity.ma.binding.ivIconBack.setImageBitmap(applIst.get(position).getForG());
                                     MainActivity.ma.binding.ivFloat.setVisibility(View.VISIBLE);
-                                    MainActivity.ma.binding.ivFloat.setImageBitmap(applIst.get(position).getBackG());
                                     MainActivity.ma.bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                                     MainActivity.ma.bottomSheetBehavior.setDraggable(false);
                                     Log.e("diff", difx + "pop" + difY);

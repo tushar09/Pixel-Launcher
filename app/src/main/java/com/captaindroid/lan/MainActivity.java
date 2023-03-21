@@ -2,6 +2,7 @@ package com.captaindroid.lan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     public int posX;
     public int posY;
     public boolean appDrawerCanScroll = true;
-    public ImageView v;
+    public CardView v;
 
     public ActivityMainBinding binding;
 
@@ -306,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
             posX = (int) event.getX();
             posY = (int) event.getY();
 
-            if(desktopRecyclerView != null){
+            if(desktopRecyclerView != null && binding.ivFloat.getVisibility() == View.VISIBLE){
                 if(desktopRecyclerView.findChildViewUnder(posX, posY) != null){
                     View v = desktopRecyclerView.findChildViewUnder(posX, posY);
                     ((ItemFinder)desktopRecyclerView.getAdapter()).findItem((Integer) ((MaterialCardView)v.findViewById(R.id.cv)).getTag());
